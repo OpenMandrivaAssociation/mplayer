@@ -1,6 +1,6 @@
 %define oname	MPlayer
 %define prerel	%{nil}
-%define svn	r37285
+%define svn	r37401
 %define ffmpegversion 2.6.3
 %if "%svn" != ""
 %define fversion %{svn}
@@ -15,9 +15,9 @@
 %endif
 %else
 %if "%{svn}" != ""
-%define rel 5.%{svn}.7
+%define rel 5.%{svn}.1
 %else
-%define rel 7
+%define rel 1
 %endif
 %endif
 
@@ -218,8 +218,6 @@ Patch0:	mplayer-mdvconfig.patch
 # fixes for crashes found while fixing CVE-2008-1558
 Patch28:	mplayer-rtsp-extra-fixes.patch
 Patch31:	mplayer-format-string-literal.patch
-#gw HAVE_DLFCN_H isn't defined
-Patch33:	mplayer-have-dlfcn_h.patch
 #gw fix crash:	https://qa.mandriva.com/show_bug.cgi?id=55443
 Patch35:	mplayer-fix-dvd-crash.patch
 Patch39:	mplayer-dlopen-libfaac-libfaad-and-libx264.patch
@@ -466,7 +464,6 @@ rm -f Blue/README
 %patch0 -p1 -b .mdv~
 %patch28 -p1 -b .rtsp-extra-fixes
 %patch31 -p1 -b .format~
-%patch33 -p1 -b .dlfcn~
 %patch35 -p0
 %if ! %{build_plf}
 %patch39 -p1 -b .dlopen~
@@ -546,9 +543,7 @@ export LDFLAGS="%{?ldflags}"
 %if ! %{build_x264}
 	--enable-x264-dlopen \
 %endif
-	--disable-libdvdcss-internal \
 	--enable-dvdnav \
-	--disable-dvdread-internal \
 	--enable-dvdread \
 %if %{build_lirc}
 	--enable-lirc \
