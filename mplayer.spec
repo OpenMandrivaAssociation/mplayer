@@ -1,7 +1,7 @@
 %define oname	MPlayer
 %define prerel	%{nil}
-%define svn	r37401
-%define ffmpegversion 2.6.3
+%define svn	%{nil}
+%define ffmpegversion 3.0
 %if "%svn" != ""
 %define fversion %{svn}
 %else
@@ -199,7 +199,7 @@
 
 Summary:	Movie player for linux
 Name:		mplayer
-Version:	1.1.1
+Version:	1.3.0
 Release:	%{rel}%{?extrarelsuffix}
 License:	GPLv2
 Group:		Video
@@ -210,7 +210,7 @@ Source0:	%{name}-%{svn}.tar.xz
 %else
 Source0:	ftp://ftp1.mplayerhq.hu/MPlayer/releases/%{oname}-%{fversion}.tar.xz
 %endif
-Source1: http://ffmpeg.org/releases/ffmpeg-%{ffmpegversion}.tar.bz2
+Source1: http://ffmpeg.org/releases/ffmpeg-%{ffmpegversion}.tar.xz
 #gw default skin
 Source4:	Blue-1.8.tar.bz2
 Source5:	kernel-version.sh

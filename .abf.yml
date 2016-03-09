@@ -1,9 +1,4 @@
-removed_sources:
-  ffmpeg-2.3.tar.bz2: 0006580ef3409aaace1c4c35ed6d77aa326ae17c
-  ffmpeg-2.4.1.tar.bz2: 8cb1c03af61001edbd0d9643b2a01b7aa097a4b3
-  ffmpeg-2.5.3.tar.bz2: 160d53a0d6b8df18336fac7f068c390ac2d34cef
-  ffmpeg-2.5.tar.bz2: ec0111e8298bdb2291d82e3b4f67354ba48fab19
 sources:
   Blue-1.8.tar.bz2: 0250d0b468b36ee13f160a814297afcb77f97e1d
-  ffmpeg-2.6.3.tar.bz2: a3307d20f97e8b75a113712e0258ab11d548d280
-  mplayer-r37401.tar.xz: faa6f6451fe421db99c7c034ef420c55819535ff
+  MPlayer-1.3.0.tar.xz: 11db20434a4e1aabb9c52f7712241dae1b3730e3
+  ffmpeg-3.0.tar.xz: 383c8d3758aea027f1452fa98ae9016a28f74d8f

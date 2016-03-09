@@ -3148,8 +3148,8 @@
  LIBDCA = $_libdca
 +LIBDCA_DLOPEN = $_libdca_dlopen
  LIBDV = $_libdv
- LIBDVDCSS_INTERNAL = $_libdvdcss_internal
  LIBLZO = $_liblzo
+ LIBMAD = $_mad
 @@ -8502,6 +8580,7 @@
  TV_V4L1 = $_tv_v4l1
  TV_V4L2 = $_tv_v4l2
