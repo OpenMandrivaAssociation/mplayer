@@ -237,7 +237,7 @@ BuildRequires:	pkgconfig(libmng)
 BuildRequires:	nas-devel
 BuildRequires:	pkgconfig(caca)
 BuildRequires:	pkgconfig(dvdread)
-BuildRequires:	pkgconfig(dvdnavmini)
+BuildRequires:	pkgconfig(dvdnav)
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(libbs2b)
 BuildRequires:	pkgconfig(libmpg123)
