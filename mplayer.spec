@@ -199,7 +199,7 @@
 
 Summary:	Movie player for linux
 Name:		mplayer
-Version:	1.3.0
+Version:	1.3.0+38016
 Release:	%{rel}%{?extrarelsuffix}
 License:	GPLv2
 Group:		Video
