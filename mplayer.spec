@@ -1,7 +1,7 @@
 %define oname	MPlayer
 %define prerel	%{nil}
 %define svn	%{nil}
-%define ffmpegversion 3.0
+%define ffmpegversion 3.5.0
 %if "%svn" != ""
 %define fversion %{svn}
 %else
@@ -9,15 +9,15 @@
 %endif
 %if "%{prerel}" != ""
 %if "%{svn}" != ""
-%define rel	1.%{prerel}.0.%{svn}.3
+%define rel	0.%{prerel}.0.%{svn}.1
 %else 
-%define rel 0.%{prerel}.2
+%define rel 0.%{prerel}.1
 %endif
 %else
 %if "%{svn}" != ""
-%define rel 5.%{svn}.1
+%define rel 0.%{svn}.1
 %else
-%define rel 1
+%define rel 2
 %endif
 %endif
 
@@ -210,11 +210,12 @@ Source0:	%{name}-%{svn}.tar.xz
 %else
 Source0:	ftp://ftp1.mplayerhq.hu/MPlayer/releases/%{oname}-%{fversion}.tar.xz
 %endif
-Source1: http://ffmpeg.org/releases/ffmpeg-%{ffmpegversion}.tar.xz
+Source1: http://ffmpeg.org/releases/ffmpeg-%{ffmpegversion}.tar.bz2
 #gw default skin
 Source4:	Blue-1.8.tar.bz2
 Source5:	kernel-version.sh
 Patch0:	mplayer-mdvconfig.patch
+Patch1:		mplayer-1.3.0-compile.patch
 # fixes for crashes found while fixing CVE-2008-1558
 Patch28:	mplayer-rtsp-extra-fixes.patch
 Patch31:	mplayer-format-string-literal.patch
@@ -241,7 +242,7 @@ BuildRequires:	pkgconfig(dvdnav)
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(libbs2b)
 BuildRequires:	pkgconfig(libmpg123)
-BuildRequires:	pkgconfig(libopenjpeg1)
+BuildRequires:	pkgconfig(libopenjp2)
 BuildRequires:	pkgconfig(libpng)
 BuildRequires:	pkgconfig(mad)
 BuildRequires:	pkgconfig(ncursesw)
@@ -358,7 +359,7 @@ BuildRequires:	pkgconfig(librtmp)
 BuildRequires:	yasm
 %endif
 %if %{build_system_ffmpeg}
-BuildRequires:	ffmpeg-devel = %{ffmpegversion}
+BuildRequires:	pkgconfig(libavcodec)
 %endif
 
 %if "%{_lib}" == "lib64"
@@ -462,6 +463,7 @@ find DOCS -name .svn|xargs rm -rf
 chmod 644 AUTHORS Changelog README Copyright
 rm -f Blue/README
 %patch0 -p1 -b .mdv~
+%patch1 -p1 -b .compile~
 %patch28 -p1 -b .rtsp-extra-fixes
 %patch31 -p1 -b .format~
 %patch35 -p0
