@@ -424,8 +424,6 @@ Summary:	GUI for %{name}
 Group:		Video
 Requires:	%{name} = %{version}
 BuildRequires:	pkgconfig(gtk+-2.0)
-BuildRequires:	imagemagick
-Requires:	soundwrapper
 
 %description gui
 This package contains a GUI for %{name}.
