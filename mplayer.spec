@@ -227,7 +227,8 @@ Patch42:	mplayer-filters-hack-with-shared.patch
 BuildRequires:	docbook-style-xsl
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	xsltproc
-BuildRequires:	bzip2-devel
+BuildRequires:	pkgconfig(bzip2)
+BuildRequires:	pkgconfig(zlib)
 BuildRequires:	giflib-devel
 BuildRequires:	gsm-devel
 BuildRequires:	jpeg-devel
@@ -250,10 +251,15 @@ BuildRequires:	pkgconfig(speex)
 BuildRequires:	pkgconfig(xxf86vm)
 BuildRequires:	pkgconfig(xxf86dga)
 BuildRequires:	pkgconfig(xscrnsaver)
+BuildRequires:	pkgconfig(xinerama)
+BuildRequires:	pkgconfig(fontconfig)
 %if %{build_aa}
 BuildRequires:	aalib-devel
 %endif
 BuildRequires:	a52dec-devel
+%if %{build_alsa}
+BuildRequires:	pkgconfig(alsa)
+%endif
 %if %{build_arts}
 BuildRequires:	arts-devel
 %endif
@@ -286,10 +292,11 @@ BuildRequires:	pkgconfig(libdv)
 BuildRequires:	pkgconfig(liblircclient0)
 %endif
 %if %{build_lzo}
-BuildRequires:	lzo-devel
+BuildRequires:	pkgconfig(lzo2)
 %endif
 %if %{build_sdl}
 BuildRequires:	pkgconfig(sdl) >= 1.1.8
+BuildRequires:	pkgconfig(SDL_image)
 %endif
 %if %{build_xmms}
 BuildRequires:	xmms-devel
@@ -360,6 +367,7 @@ BuildRequires:	yasm
 %endif
 %if %{build_system_ffmpeg}
 BuildRequires:	pkgconfig(libavcodec)
+BuildRequires:	ffmpeg-devel
 %endif
 
 %if "%{_lib}" == "lib64"
@@ -654,7 +662,7 @@ export LDFLAGS="%{?ldflags}"
 
 
 # Keep this line before empty end %%configure (ppc conditionnal pb)
-make
+%make_build -j1
 #gw make sure we have our version string included:
 fgrep %{version} version.h
 
