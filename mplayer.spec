@@ -365,10 +365,8 @@ BuildRequires:	pkgconfig(librtmp)
 %if %{build_yasm}
 BuildRequires:	yasm
 %endif
-%if %{build_system_ffmpeg}
 BuildRequires:	pkgconfig(libavcodec)
 BuildRequires:	ffmpeg-devel
-%endif
 
 %if "%{_lib}" == "lib64"
 %global	_ext	()(64bit)
@@ -531,9 +529,6 @@ export LDFLAGS="%{?ldflags}"
 %endif
 %if %{build_gui}
 	--enable-gui \
-%endif
-%if %{build_system_ffmpeg}
-	--disable-ffmpeg_a \
 %endif
 	--language=all \
 %if ! %{build_faad}
