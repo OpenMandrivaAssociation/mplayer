@@ -17,7 +17,7 @@
 %if "%{svn}" != ""
 %define rel 0.%{svn}.1
 %else
-%define rel 3
+%define rel 4
 %endif
 %endif
 
@@ -317,7 +317,7 @@ BuildRequires:	libfaac-devel
 BuildRequires:	libfaad2-devel
 %endif
 %if %{build_x264}
-BuildRequires:	pkgconfig(x264) >= 0.120
+BuildRequires:	pkgconfig(x264) >= 0.155
 %endif
 %if %{build_xvid}
 BuildRequires:	xvid-devel
@@ -380,7 +380,7 @@ BuildRequires:	ffmpeg-devel
 %if ! %{build_plf}
 Suggests:	libfaac.so.0%{_ext}
 Suggests:	libfaad.so.2%{_ext}
-Suggests:	libx264.so.120%{_ext}
+Suggests:	libx264.so.155%{_ext}
 Suggests:	libopencore-amrnb.so.0%{_ext}
 Suggests:	libopencore-amrwb.so.0%{_ext}
 Suggests:	libtwolame.so.0%{_ext}
