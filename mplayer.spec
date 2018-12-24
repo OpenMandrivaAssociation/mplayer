@@ -364,6 +364,7 @@ BuildRequires:	pkgconfig(libavformat)
 BuildRequires:	pkgconfig(libavutil)
 BuildRequires:	pkgconfig(libswscale)
 BuildRequires:	pkgconfig(libswresample)
+BuildRequires:	pkgconfig(xt)
 BuildRequires:	ffmpeg
 BuildRequires:	ffmpeg-devel
 
