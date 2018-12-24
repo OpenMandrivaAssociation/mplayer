@@ -490,7 +490,7 @@ export CFLAGS="$CFLAGS -mcpu=7450 -maltivec"
 export CPPFLAGS="-I%{_includedir}/directfb"
 %endif
 export LDFLAGS="%{?ldflags}"
-./configure \
+if ! ./configure \
 	--prefix=%{_prefix} \
 	--datadir=%{_datadir}/%{name} \
 	--confdir=%{_sysconfdir}/%{name} \
@@ -624,8 +624,12 @@ export LDFLAGS="%{?ldflags}"
 %endif
 %if ! %{build_amr}
 	--disable-libopencore_amrnb \
-	--disable-libopencore_amrwb
+	--disable-libopencore_amrwb \
 %endif
+	; then
+cat config.log
+exit 1
+fi
 
 
 # Keep this line before empty end %%configure (ppc conditionnal pb)
