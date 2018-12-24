@@ -367,6 +367,7 @@ BuildRequires:	pkgconfig(libswresample)
 BuildRequires:	pkgconfig(xt)
 BuildRequires:	ffmpeg
 BuildRequires:	ffmpeg-devel
+BuildRequires:	imagemagick
 
 %if "%{_lib}" == "lib64"
 %global	_ext	()(64bit)
