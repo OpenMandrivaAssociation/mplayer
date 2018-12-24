@@ -360,6 +360,11 @@ BuildRequires:	pkgconfig(librtmp)
 BuildRequires:	yasm
 %endif
 BuildRequires:	pkgconfig(libavcodec)
+BuildRequires:	pkgconfig(libavformat)
+BuildRequires:	pkgconfig(libavutil)
+BuildRequires:	pkgconfig(libswscale)
+BuildRequires:	pkgconfig(libswresample)
+BuildRequires:	ffmpeg
 BuildRequires:	ffmpeg-devel
 
 %if "%{_lib}" == "lib64"
