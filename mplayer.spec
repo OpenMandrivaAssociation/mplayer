@@ -1,7 +1,6 @@
 %define oname	MPlayer
 %define prerel	%{nil}
 %define svn	%{nil}
-%define ffmpegversion 4.0.2
 %if "%svn" != ""
 %define fversion %{svn}
 %else
@@ -25,7 +24,6 @@
 %define build_debug	0
 %define build_mencoder	1
 %define build_gui	1
-%define build_system_ffmpeg	1
 
 %define kernel_version	%(/bin/bash %{SOURCE5})
 %define kver 		%(/bin/bash %{SOURCE5} | sed -e 's/-/./')
@@ -103,7 +101,7 @@
 %define build_schroedinger	1
 %endif
 
-%if %{build_system_ffmpeg} && ! %{build_plf}
+%if ! %{build_plf}
 %define build_amr 0
 %define build_dirac 0
 %define build_schroedinger 0
@@ -125,8 +123,6 @@
 %{?_without_mencoder: %{expand: %%global build_mencoder 0}}
 %{?_with_gui: %{expand: %%global build_gui 1}}
 %{?_without_gui: %{expand: %%global build_gui 0}}
-%{?_with_system_ffmpeg: %{expand: %%global build_system_ffmpeg 1}}
-%{?_without_system_ffmpeg: %{expand: %%global build_system_ffmpeg 0}}
 %{?_with_theora: %{expand: %%global build_theora 1}}
 %{?_without_theora: %{expand: %%global build_theora 0}}
 %{?_with_smb: %{expand: %%global build_smb 1}}
@@ -199,7 +195,7 @@
 
 Summary:	Movie player for linux
 Name:		mplayer
-Version:	1.3.0+38016
+Version:	1.3.0+38119
 Release:	%{rel}%{?extrarelsuffix}
 License:	GPLv2
 Group:		Video
@@ -210,7 +206,6 @@ Source0:	%{name}-%{svn}.tar.xz
 %else
 Source0:	ftp://ftp1.mplayerhq.hu/MPlayer/releases/%{oname}-%{fversion}.tar.xz
 %endif
-Source1: http://ffmpeg.org/releases/ffmpeg-%{ffmpegversion}.tar.bz2
 #gw default skin
 Source4:	Blue-1.8.tar.bz2
 Source5:	kernel-version.sh
@@ -221,7 +216,6 @@ Patch28:	mplayer-rtsp-extra-fixes.patch
 Patch31:	mplayer-format-string-literal.patch
 #gw fix crash:	https://qa.mandriva.com/show_bug.cgi?id=55443
 Patch35:	mplayer-fix-dvd-crash.patch
-Patch39:	mplayer-dlopen-libfaac-libfaad-and-libx264.patch
 Patch42:	mplayer-filters-hack-with-shared.patch
 
 BuildRequires:	docbook-style-xsl
@@ -471,16 +465,6 @@ rm -f Blue/README
 %patch28 -p1 -b .rtsp-extra-fixes
 %patch31 -p1 -b .format~
 %patch35 -p0
-%if ! %{build_plf}
-%patch39 -p1 -b .dlopen~
-%endif
-rm -rf ffmpeg
-tar -xjf %{SOURCE1}
-mv ffmpeg-%{ffmpegversion} ffmpeg
-pushd ffmpeg
-popd
-#cb - these dont build against ffmpeg 2.4+
-#patch42 -p1 -b .internal_filters~
 # Sometimes (1.1.1) mplayer guys forget to update the VERSION file...
 # Let's fix it here, but let's not abuse this ;)
 echo %{version} >VERSION
@@ -506,12 +490,12 @@ export LDFLAGS="%{?ldflags}"
 	--datadir=%{_datadir}/%{name} \
 	--confdir=%{_sysconfdir}/%{name} \
 	--libdir=%{_libdir} \
+	--disable-ffmpeg_a \
 %if %{with cpudetection}
 	--enable-runtime-cpudetection \
 %endif
 %if ! %{build_dts}
 	--disable-libdca \
-	--enable-libdca-dlopen \
 %endif
 %ifarch %{ix86}
 	--enable-mmx \
@@ -531,21 +515,6 @@ export LDFLAGS="%{?ldflags}"
 	--enable-gui \
 %endif
 	--language=all \
-%if ! %{build_faad}
-	--disable-faad \
-	--disable-decoder=AAC \
-	--enable-faad-dlopen \
-%endif
-%if ! %{build_faac}
-	--enable-faac-dlopen \
-%endif
-%if ! %{build_twolame}
-	--disable-twolame \
-	--enable-twolame-dlopen \
-%endif
-%if ! %{build_x264}
-	--enable-x264-dlopen \
-%endif
 	--enable-dvdnav \
 	--enable-dvdread \
 %if %{build_lirc}
@@ -650,9 +619,7 @@ export LDFLAGS="%{?ldflags}"
 %endif
 %if ! %{build_amr}
 	--disable-libopencore_amrnb \
-	--disable-libopencore_amrwb \
-	--enable-libopencore_amrnb-dlopen \
-	--enable-libopencore_amrwb-dlopen
+	--disable-libopencore_amrwb
 %endif
 
 
