@@ -1,3 +1,8 @@
+%ifarch %{ix86}
+%define _disable_ld_no_undefined 1
+%define _disable_lto 1
+%endif
+
 %define oname	MPlayer
 %define prerel	%{nil}
 %define svn	%{nil}
@@ -16,7 +21,7 @@
 %if "%{svn}" != ""
 %define rel 0.%{svn}.1
 %else
-%define rel 4
+%define rel 1
 %endif
 %endif
 
@@ -195,7 +200,7 @@
 
 Summary:	Movie player for linux
 Name:		mplayer
-Version:	1.3.0+38119
+Version:	1.4
 Release:	%{rel}%{?extrarelsuffix}
 License:	GPLv2
 Group:		Video
