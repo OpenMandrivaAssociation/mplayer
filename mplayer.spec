@@ -1,5 +1,7 @@
+%ifarch %{ix86}
 %define _disable_ld_no_undefined 1
 %define _disable_lto 1
+%endif
 
 %define oname	MPlayer
 %define prerel	%{nil}
