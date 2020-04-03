@@ -251,6 +251,7 @@ BuildRequires:	pkgconfig(xxf86vm)
 BuildRequires:	pkgconfig(xxf86dga)
 BuildRequires:	pkgconfig(xscrnsaver)
 BuildRequires:	pkgconfig(xinerama)
+BuildRequires:  pkgconfig(xv)
 BuildRequires:	pkgconfig(fontconfig)
 %if %{build_aa}
 BuildRequires:	aalib-devel
