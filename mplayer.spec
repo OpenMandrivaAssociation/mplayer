@@ -487,7 +487,8 @@ perl -pi -e 's^r\$svn_revision^%{release}^' version.sh
 mv DOCS/README README.DOCS
 
 %build
-# Clang 10 crasing on i686.
+# Clang 10 crasing on i686. Crash log in commit descriptions: 
+# https://github.com/OpenMandrivaAssociation/mplayer/commit/60ae23d044c8c83773abeeafdec802a040064880
 %ifarch %{ix86}
 export CC=gcc
 export CXX=g++
