@@ -487,6 +487,12 @@ perl -pi -e 's^r\$svn_revision^%{release}^' version.sh
 mv DOCS/README README.DOCS
 
 %build
+# Clang 10 crasing on i686.
+%ifarch %{ix86}
+export CC=gcc
+export CXX=g++
+%endif
+
 export CFLAGS="$CFLAGS %{optflags}"
 %if %{build_debug}
 export CFLAGS="$CFLAGS -g"
