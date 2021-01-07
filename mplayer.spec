@@ -21,7 +21,7 @@
 %if "%{svn}" != ""
 %define rel 0.%{svn}.1
 %else
-%define rel 4
+%define rel 5
 %endif
 %endif
 
@@ -329,7 +329,7 @@ BuildRequires:	pkgconfig(libdts)
 BuildRequires:	lame-devel
 %endif
 %if %{build_live}
-BuildRequires:	live-devel
+BuildRequires:	pkgconfig(live555)
 %endif
 %if %{build_vesa}
 BuildRequires:	libvbe-devel
