@@ -3,9 +3,11 @@
 %define _disable_lto 1
 %endif
 
-%define oname	MPlayer
-%define prerel	%{nil}
-%define svn	%{nil}
+%global optflags %{optflags} -O3
+
+%define oname MPlayer
+%define prerel %{nil}
+%define svn %{nil}
 %if "%svn" != ""
 %define fversion %{svn}
 %else
@@ -13,77 +15,77 @@
 %endif
 %if "%{prerel}" != ""
 %if "%{svn}" != ""
-%define rel	0.%{prerel}.0.%{svn}.1
-%else 
+%define rel 0.%{prerel}.0.%{svn}.1
+%else
 %define rel 0.%{prerel}.1
 %endif
 %else
 %if "%{svn}" != ""
 %define rel 0.%{svn}.1
 %else
-%define rel 5
+%define rel 6
 %endif
 %endif
 
-%define build_plf	0
-%define build_debug	0
-%define build_mencoder	1
-%define build_gui	1
+%define build_plf 0
+%define build_debug 0
+%define build_mencoder 1
+%define build_gui 1
 
-%define kernel_version	%(/bin/bash %{SOURCE5})
-%define kver 		%(/bin/bash %{SOURCE5} | sed -e 's/-/./')
-%define kvername	%(/bin/bash %{SOURCE5} | sed -e 's/-/./' | sed -e 's/mdk//')
+%define kernel_version %(/bin/bash %{SOURCE5})
+%define kver %(/bin/bash %{SOURCE5} | sed -e 's/-/./')
+%define kvername %(/bin/bash %{SOURCE5} | sed -e 's/-/./' | sed -e 's/mdk//')
 
-%define build_yasm	1
-%define build_live	1
-%define build_vesa	1
-%define build_theora	1
-%define build_ggi	0
-%define build_lirc	1
-%define	build_xmms	0
-%define build_amr	0
-%define	build_arts	0
-%define build_aa	1
-%define build_cdda	1
-%define build_compiz	0
-%define build_dirac	1
-%define build_dv	1
-%define build_sdl	1
-%define build_lzo	1
-%define build_smb	1
-%define build_mga	1
-%define build_fbdev	1
-%define build_dvb	1
-%define build_fribidi	1
-%define build_enca	1
-%define build_alsa	1
-%define build_jack	1
-%define build_openal	0
-%define build_pulse	1
-%define build_schroedinger	1
-%define build_twolame	0
-%define build_lame	0
-%define build_faac	0
-%define build_faad	0
-%define build_x264	0
-%define build_xvid	0
-%define build_dts	0
-%define build_directfb	1
-%define build_v4l2	1
-%define build_xvmc	1
-%define build_vdpau	1
-%define build_ivtv	0
-%define build_libass	1
-%define build_vpx	1
-%define build_rtmp	1
+%define build_yasm 1
+%define build_live 1
+%define build_vesa 1
+%define build_theora 1
+%define build_ggi 0
+%define build_lirc 1
+%define	build_xmms 0
+%define build_amr 0
+%define	build_arts 0
+%define build_aa 1
+%define build_cdda 1
+%define build_compiz 0
+%define build_dirac 1
+%define build_dv 1
+%define build_sdl 1
+%define build_lzo 1
+%define build_smb 1
+%define build_mga 1
+%define build_fbdev 1
+%define build_dvb 1
+%define build_fribidi 1
+%define build_enca 1
+%define build_alsa 1
+%define build_jack 1
+%define build_openal 0
+%define build_pulse 1
+%define build_schroedinger 1
+%define build_twolame 0
+%define build_lame 1
+%define build_faac 0
+%define build_faad 0
+%define build_x264 0
+%define build_xvid 0
+%define build_dts 0
+%define build_directfb 1
+%define build_v4l2 1
+%define build_xvmc 1
+%define build_vdpau 1
+%define build_ivtv 0
+%define build_libass 1
+%define build_vpx 1
+%define build_rtmp 1
 
-%define build_smb	0
+%define build_smb 0
 
 %ifnarch %{ix86}
-%define build_vesa	0
+%define build_vesa 0
 %endif
 
-%{?_with_plf:	%{expand:	%%global build_plf 1}}
+%{?_with_plf: %{expand: %%global build_plf 1}}
 
 #####################
 # Hardcode PLF build
@@ -93,17 +95,17 @@
 %if %{build_plf}
 # make EVR of plf build higher than regular to allow update, needed with rpm5 mkrel
 %define extrarelsuffix plf
-%define build_amr	1
-%define build_twolame	1
-%define build_lame	1
-%define build_faac	1
-%define build_faad	1
-%define build_x264	1
-%define build_xvid	1
-%define build_dts	1
-%define build_yasm	1
-%define build_dirac	1
-%define build_schroedinger	1
+%define build_amr 1
+%define build_twolame 1
+%define build_lame 1
+%define build_faac 1
+%define build_faad 1
+%define build_x264 1
+%define build_xvid 1
+%define build_dts 1
+%define build_yasm 1
+%define build_dirac 1
+%define build_schroedinger 1
 %endif
 
 %if ! %{build_plf}
@@ -195,7 +197,7 @@
 %{?_with_vpx: %{expand: %%global build_vpx 1}}
 %{?_without_vpx: %{expand: %%global build_vpx 0}}
 %ifnarch %arm %mips aarch64
-%bcond_without	cpudetection
+%bcond_withoutcpudetection
 %endif
 
 Summary:	Movie player for linux
@@ -214,7 +216,7 @@ Source0:	ftp://ftp1.mplayerhq.hu/MPlayer/releases/%{oname}-%{fversion}.tar.xz
 #gw default skin
 Source4:	Blue-1.8.tar.bz2
 Source5:	kernel-version.sh
-Patch0:	mplayer-mdvconfig.patch
+Patch0:		mplayer-mdvconfig.patch
 Patch1:		mplayer-1.3.0-compile.patch
 # fixes for crashes found while fixing CVE-2008-1558
 Patch28:	mplayer-rtsp-extra-fixes.patch
@@ -230,7 +232,7 @@ BuildRequires:	pkgconfig(bzip2)
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	giflib-devel
 BuildRequires:	gsm-devel
-BuildRequires:	jpeg-devel
+BuildRequires:	pkgconfig(libjpeg)
 BuildRequires:	ladspa-devel
 BuildRequires:	libdxr3-devel
 BuildRequires:	libmpcdec-devel
@@ -251,7 +253,7 @@ BuildRequires:	pkgconfig(xxf86vm)
 BuildRequires:	pkgconfig(xxf86dga)
 BuildRequires:	pkgconfig(xscrnsaver)
 BuildRequires:	pkgconfig(xinerama)
-BuildRequires:  pkgconfig(xv)
+BuildRequires:	pkgconfig(xv)
 BuildRequires:	pkgconfig(fontconfig)
 %if %{build_aa}
 BuildRequires:	aalib-devel
@@ -376,9 +378,9 @@ BuildRequires:	ffmpeg-devel
 BuildRequires:	imagemagick
 
 %if "%{_lib}" == "lib64"
-%global	_ext	()(64bit)
+%global _ext ()(64bit)
 %else
-%global	_ext	%{nil}
+%global _ext %{nil}
 %endif
 
 # With plf build they are auto-required
@@ -504,7 +506,7 @@ export CFLAGS="$CFLAGS -mcpu=7450 -maltivec"
 %if %{build_directfb}
 export CPPFLAGS="-I%{_includedir}/directfb"
 %endif
-export LDFLAGS="%{?ldflags}"
+export LDFLAGS="%{build_ldflags}"
 if ! ./configure \
 	--prefix=%{_prefix} \
 	--datadir=%{_datadir}/%{name} \
