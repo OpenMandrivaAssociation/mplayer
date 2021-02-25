@@ -42,9 +42,9 @@
 %define build_theora 1
 %define build_ggi 0
 %define build_lirc 1
-%define	build_xmms 0
+%define build_xmms 0
 %define build_amr 0
-%define	build_arts 0
+%define build_arts 0
 %define build_aa 1
 %define build_cdda 1
 %define build_compiz 0
@@ -197,7 +197,7 @@
 %{?_with_vpx: %{expand: %%global build_vpx 1}}
 %{?_without_vpx: %{expand: %%global build_vpx 0}}
 %ifnarch %arm %mips aarch64
-%bcond_withoutcpudetection
+%bcond_without cpudetection
 %endif
 
 Summary:	Movie player for linux
