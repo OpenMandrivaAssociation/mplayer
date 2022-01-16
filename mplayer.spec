@@ -23,7 +23,7 @@
 %if "%{svn}" != ""
 %define rel 0.%{svn}.1
 %else
-%define rel 6
+%define rel 7
 %endif
 %endif
 
@@ -74,7 +74,6 @@
 %define build_v4l2 1
 %define build_xvmc 1
 %define build_vdpau 1
-%define build_ivtv 0
 %define build_libass 1
 %define build_vpx 1
 %define build_rtmp 1
@@ -202,7 +201,7 @@
 
 Summary:	Movie player for linux
 Name:		mplayer
-Version:	1.4
+Version:	1.4.38329
 Release:	%{rel}%{?extrarelsuffix}
 License:	GPLv2
 Group:		Video
@@ -211,7 +210,7 @@ Url:		http://www.mplayerhq.hu
 #gw generated using svn export
 Source0:	%{name}-%{svn}.tar.xz
 %else
-Source0:	ftp://ftp1.mplayerhq.hu/MPlayer/releases/%{oname}-%{fversion}.tar.xz
+Source0:	ftp://ftp1.mplayerhq.hu/MPlayer/releases/%{name}-%{fversion}.tar.zst
 %endif
 #gw default skin
 Source4:	Blue-1.8.tar.bz2
@@ -467,7 +466,7 @@ be illegal in some countries.
 %if "%{svn}" != ""
 %setup -q -n %{name} -a 4
 %else
-%setup -q -n MPlayer-%{version}%{prerel} -a 4
+%setup -q -n %{name}-%{version}%{prerel} -a 4
 %endif
 #gw as we have have used svn export:
 echo %{svn}|sed s/^r// > snapshot_version
@@ -632,9 +631,6 @@ if ! ./configure \
 	--disable-zr \
 %if %{build_xvmc}
 	--enable-xvmc \
-%endif
-%if ! %{build_ivtv}
-	--disable-ivtv \
 %endif
 %if ! %{build_vdpau}
 	--disable-vdpau \
