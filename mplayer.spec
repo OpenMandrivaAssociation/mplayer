@@ -23,7 +23,7 @@
 %if "%{svn}" != ""
 %define rel 0.%{svn}.1
 %else
-%define rel 7
+%define rel 1
 %endif
 %endif
 
@@ -201,7 +201,7 @@
 
 Summary:	Movie player for linux
 Name:		mplayer
-Version:	1.4.38329
+Version:	1.5
 Release:	%{rel}%{?extrarelsuffix}
 License:	GPLv2
 Group:		Video
@@ -210,7 +210,7 @@ Url:		http://www.mplayerhq.hu
 #gw generated using svn export
 Source0:	%{name}-%{svn}.tar.xz
 %else
-Source0:	ftp://ftp1.mplayerhq.hu/MPlayer/releases/%{name}-%{fversion}.tar.zst
+Source0:	ftp://ftp1.mplayerhq.hu/MPlayer/releases/%{oname}-%{fversion}.tar.xz
 %endif
 #gw default skin
 Source4:	Blue-1.8.tar.bz2
@@ -466,7 +466,7 @@ be illegal in some countries.
 %if "%{svn}" != ""
 %setup -q -n %{name} -a 4
 %else
-%setup -q -n %{name}-%{version}%{prerel} -a 4
+%setup -q -n %{oname}-%{version} -a 4
 %endif
 #gw as we have have used svn export:
 echo %{svn}|sed s/^r// > snapshot_version
