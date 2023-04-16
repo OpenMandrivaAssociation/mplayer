@@ -3,11 +3,11 @@
 %define _disable_lto 1
 %endif
 
-%global optflags %{optflags} -O3
+%global optflags %{optflags} -O3 -Wno-int-conversion
 
 %define oname MPlayer
 %define prerel %{nil}
-%define svn %{nil}
+%define svn 2023-04-16
 %if "%svn" != ""
 %define fversion %{svn}
 %else
@@ -21,7 +21,7 @@
 %endif
 %else
 %if "%{svn}" != ""
-%define rel 0.%{svn}.1
+%define rel 0.%(echo %{svn} |sed -e 's,-,,g').1
 %else
 %define rel 1
 %endif
@@ -201,14 +201,14 @@
 
 Summary:	Movie player for linux
 Name:		mplayer
-Version:	1.5
+Version:	1.6
 Release:	%{rel}%{?extrarelsuffix}
 License:	GPLv2
 Group:		Video
 Url:		http://www.mplayerhq.hu
 %if "%svn" != ""
 #gw generated using svn export
-Source0:	%{name}-%{svn}.tar.xz
+Source0:	https://mplayerhq.hu/MPlayer/releases/mplayer-export-snapshot.tar.bz2#/mplayer-%{svn}.tar.bz2
 %else
 Source0:	ftp://ftp1.mplayerhq.hu/MPlayer/releases/%{oname}-%{fversion}.tar.xz
 %endif
@@ -464,7 +464,7 @@ be illegal in some countries.
 
 %prep
 %if "%{svn}" != ""
-%setup -q -n %{name} -a 4
+%setup -q -n %{name}-export-%{svn} -a 4
 %else
 %setup -q -n %{oname}-%{version} -a 4
 %endif
