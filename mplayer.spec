@@ -474,7 +474,7 @@ find DOCS -name .svn|xargs rm -rf
 #gw fix permissions
 chmod 644 AUTHORS Changelog README Copyright
 rm -f Blue/README
-%patch0 -p1 -b .mdv~
+%patch 0 -p1 -b .mdv~
 %patch1 -p1 -b .compile~
 %patch28 -p1 -b .rtsp-extra-fixes
 %patch31 -p1 -b .format~
