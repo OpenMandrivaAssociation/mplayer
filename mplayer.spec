@@ -475,10 +475,10 @@ find DOCS -name .svn|xargs rm -rf
 chmod 644 AUTHORS Changelog README Copyright
 rm -f Blue/README
 %patch 0 -p1 -b .mdv~
-%patch1 -p1 -b .compile~
-%patch28 -p1 -b .rtsp-extra-fixes
-%patch31 -p1 -b .format~
-%patch35 -p0
+%patch 1 -p1 -b .compile~
+%patch 28 -p1 -b .rtsp-extra-fixes
+%patch 31 -p1 -b .format~
+%patch 35 -p0
 # Sometimes (1.1.1) mplayer guys forget to update the VERSION file...
 # Let's fix it here, but let's not abuse this ;)
 echo %{version} >VERSION
