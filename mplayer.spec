@@ -225,6 +225,7 @@ Patch35:	mplayer-fix-dvd-crash.patch
 Patch42:	mplayer-filters-hack-with-shared.patch
 
 BuildRequires:  gettext
+BuildRequires:	nasm
 BuildRequires:  which
 BuildRequires:	docbook-style-xsl
 BuildRequires:	docbook-dtd412-xml
