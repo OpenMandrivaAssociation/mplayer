@@ -7,7 +7,7 @@
 
 %define oname MPlayer
 %define prerel %{nil}
-%define svn 2023-04-16
+%define svn 2024-04-10
 %if "%svn" != ""
 %define fversion %{svn}
 %else
