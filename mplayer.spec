@@ -4,6 +4,7 @@
 %endif
 
 %global optflags %{optflags} -O3 -Wno-int-conversion
+%global optflags %{optflags} -Wno-error -Wno-implicit-function-declaration
 
 %define oname MPlayer
 %define prerel %{nil}
