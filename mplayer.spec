@@ -5,6 +5,7 @@
 
 %global optflags %{optflags} -O3 -Wno-int-conversion
 %global optflags %{optflags} -Wno-error -Wno-implicit-function-declaration
+%global optflags %{optflags} -Wno-incompatible-function-pointer-types
 
 %define oname MPlayer
 %define prerel %{nil}
