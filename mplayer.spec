@@ -73,7 +73,7 @@
 %define build_dts 0
 %define build_directfb 1
 %define build_v4l2 1
-%define build_xvmc 1
+%define build_xvmc 0
 %define build_vdpau 1
 %define build_libass 1
 %define build_vpx 1
