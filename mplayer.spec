@@ -532,6 +532,7 @@ if ! ./configure \
 	--enable-sse2 \
 	--enable-fastmemcpy \
 %endif
+	--disable-xvmc \
 	--enable-freetype \
 	--enable-nas \
 %if %{build_debug}
