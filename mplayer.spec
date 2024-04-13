@@ -229,6 +229,7 @@ Patch42:	mplayer-filters-hack-with-shared.patch
 Patch43:	attachment-0001.patch
 
 BuildRequires:  gettext
+BuildRequires:	locales-extra-charsets
 BuildRequires:	nasm
 BuildRequires:  which
 BuildRequires:	docbook-style-xsl
