@@ -224,6 +224,8 @@ Patch31:	mplayer-format-string-literal.patch
 #gw fix crash:	https://qa.mandriva.com/show_bug.cgi?id=55443
 Patch35:	mplayer-fix-dvd-crash.patch
 Patch42:	mplayer-filters-hack-with-shared.patch
+# https://lists.mplayerhq.hu/pipermail/mplayer-dev-eng/2024-April/074171.html
+Patch43:	attachment-0001.patch
 
 BuildRequires:  gettext
 BuildRequires:	nasm
@@ -483,6 +485,7 @@ rm -f Blue/README
 %patch 28 -p1 -b .rtsp-extra-fixes
 %patch 31 -p1 -b .format~
 %patch 35 -p0
+%patch 43 -p1
 # Sometimes (1.1.1) mplayer guys forget to update the VERSION file...
 # Let's fix it here, but let's not abuse this ;)
 echo %{version} >VERSION
