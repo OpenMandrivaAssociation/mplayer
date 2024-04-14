@@ -219,12 +219,12 @@ Source4:	Blue-1.8.tar.bz2
 Source5:	kernel-version.sh
 Patch0:		mplayer-mdvconfig.patch
 Patch1:		mplayer-1.3.0-compile.patch
+Patch2:		mplayer-fix-gettext.patch
 # fixes for crashes found while fixing CVE-2008-1558
 Patch28:	mplayer-rtsp-extra-fixes.patch
 Patch31:	mplayer-format-string-literal.patch
 #gw fix crash:	https://qa.mandriva.com/show_bug.cgi?id=55443
 Patch35:	mplayer-fix-dvd-crash.patch
-Patch42:	mplayer-filters-hack-with-shared.patch
 # https://lists.mplayerhq.hu/pipermail/mplayer-dev-eng/2024-April/074171.html
 Patch43:	attachment-0001.patch
 
@@ -482,12 +482,7 @@ find DOCS -name .svn|xargs rm -rf
 #gw fix permissions
 chmod 644 AUTHORS Changelog README Copyright
 rm -f Blue/README
-%patch 0 -p1 -b .mdv~
-%patch 1 -p1 -b .compile~
-%patch 28 -p1 -b .rtsp-extra-fixes
-%patch 31 -p1 -b .format~
-%patch 35 -p0
-%patch 43 -p1
+%autopatch -p1
 # Sometimes (1.1.1) mplayer guys forget to update the VERSION file...
 # Let's fix it here, but let's not abuse this ;)
 echo %{version} >VERSION
