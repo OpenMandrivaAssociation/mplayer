@@ -207,7 +207,7 @@ Version:	1.6
 Release:	%{rel}%{?extrarelsuffix}1
 License:	GPLv2
 Group:		Video
-Url:		http://www.mplayerhq.hu
+Url:		https://www.mplayerhq.hu
 %if "%svn" != ""
 #gw generated using svn export
 Source0:	https://mplayerhq.hu/MPlayer/releases/mplayer-export-snapshot.tar.bz2#/mplayer-%{svn}.tar.bz2
