@@ -204,7 +204,7 @@
 Summary:	Movie player for linux
 Name:		mplayer
 Version:	1.6
-Release:	%{rel}%{?extrarelsuffix}2
+Release:	%{rel}%{?extrarelsuffix}3
 License:	GPLv2
 Group:		Video
 Url:		https://www.mplayerhq.hu
