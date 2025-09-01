@@ -643,7 +643,7 @@ if ! ./configure \
 #	; then
 #cat config.log
 #exit 1
-#fi
+fi
 
 
 # Keep this line before empty end %%configure (ppc conditionnal pb)
