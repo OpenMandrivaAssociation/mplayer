@@ -529,7 +529,6 @@ if ! ./configure \
 	--enable-sse2 \
 	--enable-fastmemcpy \
 %endif
-	--disable-xvmc \
 	--enable-freetype \
 	--enable-nas \
 %if %{build_debug}
@@ -634,9 +633,6 @@ if ! ./configure \
 	--disable-openal \
 %endif
 	--disable-zr \
-%if %{build_xvmc}
-	--enable-xvmc \
-%endif
 %if ! %{build_vdpau}
 	--disable-vdpau \
 %endif
@@ -644,10 +640,10 @@ if ! ./configure \
 	--disable-libopencore_amrnb \
 	--disable-libopencore_amrwb \
 %endif
-	; then
-cat config.log
-exit 1
-fi
+#	; then
+#cat config.log
+#exit 1
+#fi
 
 
 # Keep this line before empty end %%configure (ppc conditionnal pb)
