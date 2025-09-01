@@ -210,7 +210,7 @@ Group:		Video
 Url:		https://www.mplayerhq.hu
 %if "%svn" != ""
 #gw generated using svn export
-Source0:	https://mplayerhq.hu/MPlayer/releases/mplayer-export-snapshot.tar.bz2#/mplayer-%{svn}.tar.bz2
+Source0:	https://mplayerhq.hu/MPlayer/releases/mplayer-snapshot.tar.bz2#/mplayer-%{svn}.tar.bz2
 %else
 Source0:	ftp://ftp1.mplayerhq.hu/MPlayer/releases/%{oname}-%{fversion}.tar.xz
 %endif
@@ -472,7 +472,7 @@ be illegal in some countries.
 
 %prep
 %if "%{svn}" != ""
-%setup -q -n %{name}-export-%{svn} -a 4
+%setup -q -n %{name}-%{svn} -a 4
 %else
 %setup -q -n %{oname}-%{version} -a 4
 %endif
