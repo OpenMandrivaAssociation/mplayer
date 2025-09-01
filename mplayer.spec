@@ -219,7 +219,7 @@ Source4:	Blue-1.8.tar.bz2
 Source5:	kernel-version.sh
 Patch0:		mplayer-mdvconfig.patch
 Patch1:		mplayer-1.3.0-compile.patch
-Patch2:		mplayer-fix-gettext.patch
+#Patch2:		mplayer-fix-gettext.patch
 # fixes for crashes found while fixing CVE-2008-1558
 Patch28:	mplayer-rtsp-extra-fixes.patch
 Patch31:	mplayer-format-string-literal.patch
