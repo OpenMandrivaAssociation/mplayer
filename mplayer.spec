@@ -640,9 +640,9 @@ if ! ./configure \
 	--disable-libopencore_amrnb \
 	--disable-libopencore_amrwb \
 %endif
-#	; then
+	; then
 #cat config.log
-#exit 1
+exit 1
 fi
 
 
