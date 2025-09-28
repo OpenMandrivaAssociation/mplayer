@@ -9,7 +9,7 @@
 
 %define oname MPlayer
 %define prerel %{nil}
-%define svn 2024-04-13
+%define svn 2025-09-28
 %if "%svn" != ""
 %define fversion %{svn}
 %else
@@ -74,8 +74,7 @@
 %define build_dts 0
 %define build_directfb 1
 %define build_v4l2 1
-%define build_xvmc 0
-%define build_vdpau 1
+%define build_vdpau 0
 %define build_libass 1
 %define build_vpx 1
 %define build_rtmp 1
@@ -191,8 +190,6 @@
 %{?_without_rtmp: %{expand: %%global build_rtmp 0}}
 %{?_with_v4l2: %{expand: %%global build_v4l2 1}}
 %{?_without_v4l2: %{expand: %%global build_v4l2 0}}
-%{?_with_xvmc: %{expand: %%global build_xvmc 1}}
-%{?_without_xvmc: %{expand: %%global build_xvmc 0}}
 %{?_with_vdpau: %{expand: %%global build_vdpau 1}}
 %{?_without_vdpau: %{expand: %%global build_vdpau 0}}
 %{?_with_vpx: %{expand: %%global build_vpx 1}}
@@ -219,7 +216,6 @@ Source4:	Blue-1.8.tar.bz2
 Source5:	kernel-version.sh
 Patch0:		mplayer-mdvconfig.patch
 Patch1:		mplayer-1.3.0-compile.patch
-Patch2:		mplayer-fix-gettext.patch
 # fixes for crashes found while fixing CVE-2008-1558
 Patch28:	mplayer-rtsp-extra-fixes.patch
 Patch31:	mplayer-format-string-literal.patch
@@ -227,6 +223,8 @@ Patch31:	mplayer-format-string-literal.patch
 Patch35:	mplayer-fix-dvd-crash.patch
 # https://lists.mplayerhq.hu/pipermail/mplayer-dev-eng/2024-April/074171.html
 Patch43:	attachment-0001.patch
+# Based on https://lists.mplayerhq.hu/pipermail/mplayer-dev-eng/2025-May/074270.html
+Patch44:	mplayer-ffmpeg-8.patch
 
 BuildRequires:  gettext
 BuildRequires:	locales-extra-charsets
@@ -355,9 +353,6 @@ BuildRequires:	pkgconfig(enca)
 %endif
 %if %{build_directfb}
 BuildRequires:	pkgconfig(directfb)
-%endif
-%if %{build_xvmc}
-BuildRequires:	pkgconfig(xvmc)
 %endif
 %if %{build_vdpau}
 BuildRequires:	pkgconfig(vdpau)
@@ -529,7 +524,6 @@ if ! ./configure \
 	--enable-sse2 \
 	--enable-fastmemcpy \
 %endif
-	--disable-xvmc \
 	--enable-freetype \
 	--enable-nas \
 %if %{build_debug}
@@ -634,9 +628,6 @@ if ! ./configure \
 	--disable-openal \
 %endif
 	--disable-zr \
-%if %{build_xvmc}
-	--enable-xvmc \
-%endif
 %if ! %{build_vdpau}
 	--disable-vdpau \
 %endif
