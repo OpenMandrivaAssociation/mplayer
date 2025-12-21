@@ -226,6 +226,7 @@ Patch43:	attachment-0001.patch
 # Based on https://lists.mplayerhq.hu/pipermail/mplayer-dev-eng/2025-May/074270.html
 Patch44:	mplayer-ffmpeg-8.patch
 
+BuildRequires:	make
 BuildRequires:  gettext
 BuildRequires:	locales-extra-charsets
 BuildRequires:	nasm
