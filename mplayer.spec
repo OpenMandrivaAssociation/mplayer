@@ -201,7 +201,7 @@
 Summary:	Movie player for linux
 Name:		mplayer
 Version:	1.6
-Release:	%{rel}%{?extrarelsuffix}4
+Release:	%{rel}%{?extrarelsuffix}5
 License:	GPLv2
 Group:		Video
 Url:		https://www.mplayerhq.hu
@@ -225,6 +225,8 @@ Patch35:	mplayer-fix-dvd-crash.patch
 Patch43:	attachment-0001.patch
 # Based on https://lists.mplayerhq.hu/pipermail/mplayer-dev-eng/2025-May/074270.html
 Patch44:	mplayer-ffmpeg-8.patch
+# AVCodec.sample_fmts removed in FFmpeg 9
+Patch45:	mplayer-ffmpeg-9-sample-fmts.patch
 
 BuildRequires:	make
 BuildRequires:  gettext
